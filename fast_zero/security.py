@@ -66,9 +66,7 @@ def get_current_user(
     except DecodeError:
         raise credentials_exception
 
-    user = session.scalar(select(User).where(
-        (User.email == username) & (User.pode == True)
-    )
+    user = session.scalar(select(User).where(User.email == username))
 
     if not user:
         raise credentials_exception
